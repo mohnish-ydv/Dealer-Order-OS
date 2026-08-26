@@ -2,6 +2,7 @@ package com.apex.dms.ui.screens
 
 import android.graphics.Color as AndroidColor
 import androidx.fragment.app.FragmentActivity
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -44,7 +45,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -174,7 +174,7 @@ private fun IntroJourney(onFinished: () -> Unit) {
 
 @Composable
 private fun AuthJourney(store: AppStore, onAuthenticated: (ActorRole) -> Unit) {
-    val activity = LocalContext.current as? FragmentActivity
+    val activity = LocalActivity.current as? FragmentActivity
     var mode by remember { mutableStateOf("login") }
     var tcUsable by remember { mutableStateOf<Boolean?>(null) }
     var localError by remember { mutableStateOf<String?>(null) }
