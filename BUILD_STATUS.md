@@ -29,4 +29,4 @@ Supabase `Dealer-Order-OS` is active with BAOS tables, seeded products and activ
 `.github/workflows/android.yml`
 
 A release build hard-fails if signing secrets are missing or the final APK certificate does not equal:
-`D4:1D:9F:BA:97:B0:74:C1:D4:74:B4:0B:4E:CD:EB:A0:4C:C2:76:1B`
+`56:26:3F:51:95:FE:56:67:8D:79:7D:F9:CA:C8:47:4F:1D:CC:46:C2`

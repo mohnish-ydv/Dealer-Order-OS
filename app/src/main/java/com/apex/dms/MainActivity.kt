@@ -1,7 +1,7 @@
 package com.apex.dms
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -9,7 +9,7 @@ import com.apex.dms.data.AppStore
 import com.apex.dms.ui.navigation.DmsApp
 import com.apex.dms.ui.theme.ApexDmsTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

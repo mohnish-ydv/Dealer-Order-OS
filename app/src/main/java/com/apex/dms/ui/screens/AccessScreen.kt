@@ -1,7 +1,7 @@
 package com.apex.dms.ui.screens
 
 import android.graphics.Color as AndroidColor
-import androidx.activity.ComponentActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -58,11 +58,11 @@ import com.apex.dms.ui.theme.ShoppeBlueSoft
 import com.apex.dms.ui.theme.ShoppeInk
 import com.apex.dms.ui.theme.ShoppeMint
 import com.apex.dms.ui.theme.ShoppeMuted
-import com.truecaller.android.sdk.TcOAuthCallback
-import com.truecaller.android.sdk.TcOAuthData
-import com.truecaller.android.sdk.TcOAuthError
-import com.truecaller.android.sdk.TcSdk
-import com.truecaller.android.sdk.TcSdkOptions
+import com.truecaller.android.sdk.oAuth.TcOAuthCallback
+import com.truecaller.android.sdk.oAuth.TcOAuthData
+import com.truecaller.android.sdk.oAuth.TcOAuthError
+import com.truecaller.android.sdk.oAuth.TcSdk
+import com.truecaller.android.sdk.oAuth.TcSdkOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.math.BigInteger
@@ -174,7 +174,7 @@ private fun IntroJourney(onFinished: () -> Unit) {
 
 @Composable
 private fun AuthJourney(store: AppStore, onAuthenticated: (ActorRole) -> Unit) {
-    val activity = LocalContext.current as? ComponentActivity
+    val activity = LocalContext.current as? FragmentActivity
     var mode by remember { mutableStateOf("login") }
     var tcUsable by remember { mutableStateOf<Boolean?>(null) }
     var localError by remember { mutableStateOf<String?>(null) }
@@ -199,7 +199,11 @@ private fun AuthJourney(store: AppStore, onAuthenticated: (ActorRole) -> Unit) {
             }
 
             override fun onFailure(tcOAuthError: TcOAuthError) {
-                localError = tcOAuthError.errorMessage ?: "Truecaller sign-in was not completed."
+                localError = "Truecaller sign-in was not completed. Please try again or use another login method."
+            }
+
+            override fun onVerificationRequired(tcOAuthError: TcOAuthError?) {
+                localError = "Truecaller one-tap verification is unavailable for this number. Use the fallback login method."
             }
         }
     }
