@@ -1,0 +1,97 @@
+{
+  "name": "04 Quote Follow-up",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "quote-followup",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "28540a6d-15e1-4347-9da1-5cbea358f81b",
+      "name": "Quote Sent Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 24,
+        "unit": "hours"
+      },
+      "id": "caa1d014-c055-4bde-9da0-d6bc28bca6eb",
+      "name": "Wait 24 Hours",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b6ee26b4-8b23-49ca-8e99-3fd97c947628",
+              "name": "action",
+              "value": "SEND_QUOTE_REMINDER",
+              "type": "string"
+            },
+            {
+              "id": "500092fb-c267-48af-accb-b67914b141ff",
+              "name": "status",
+              "value": "WAITING",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3a1fdcb8-dfdf-4ae8-9b99-a28985c4bf04",
+      "name": "Reminder Due",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Quote Sent Trigger": {
+      "main": [
+        [
+          {
+            "node": "Wait 24 Hours",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 24 Hours": {
+      "main": [
+        [
+          {
+            "node": "Reminder Due",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1ec1d8d0-56d9-4726-a7b4-3d66d4d52d7d",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

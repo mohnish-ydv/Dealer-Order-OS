@@ -1,0 +1,21 @@
+Apex DMS Native v1.0.0 — local QA execution
+Date: 2026-08-26
+
+PASS — pure Kotlin compile: Models.kt + Workflow.kt + SeedData.kt
+PASS — runtime seed/domain check: 29 products, 8 dealers, 6 requests, 4 quotations, 3 orders
+PASS — deterministic quotation math checks
+PASS — request state-machine invalid-jump check
+PASS — sequential order-state check
+PASS — request/dealer/product/quote relationship checks
+PASS — Android XML parsing: 6 files
+PASS — Kotlin structural delimiter scan: 16 files
+PASS — parser-style scan: 0 `expecting` / unexpected-token findings
+PASS — routes: 26 route constants referenced by NavHost
+PASS — blank onClick scan: 0
+PASS — WebView/android.webkit scan: 0
+PASS — filler/unfinished placeholder copy scan: 0
+PASS — workflow contains unit test, lint, assembleDebug and APK artifact gates
+
+NOT EXECUTED LOCALLY — Android Gradle build
+Reason: this sandbox has no Android SDK and no Gradle distribution, and outbound DNS is blocked.
+Authoritative binary gate: .github/workflows/android.yml

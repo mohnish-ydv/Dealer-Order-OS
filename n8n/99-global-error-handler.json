@@ -1,0 +1,73 @@
+{
+  "name": "99 Global Error Handler",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "37617672-a02d-480b-924f-24d8d07ddffa",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "92770b0b-b0ca-4dc4-a26a-24303cb4d561",
+              "name": "status",
+              "value": "FAILED",
+              "type": "string"
+            },
+            {
+              "id": "38791e68-657a-4c43-9cba-70bb04732a9e",
+              "name": "workflow",
+              "value": "={{ $json.workflow?.name || 'unknown' }}",
+              "type": "string"
+            },
+            {
+              "id": "beb97692-e6cb-4b01-9d44-a6b4909dd3eb",
+              "name": "error",
+              "value": "={{ $json.execution?.error?.message || 'Unknown automation error' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6faeb076-f7f9-4ba6-867c-601959d3f33d",
+      "name": "Normalize Failure",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Normalize Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "c63eb417-af43-490f-9acb-20e5dcac602b",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

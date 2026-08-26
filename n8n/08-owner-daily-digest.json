@@ -1,0 +1,76 @@
+{
+  "name": "08 Owner Daily Digest",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 8 * * *"
+            }
+          ]
+        }
+      },
+      "id": "b50f5c25-eb25-4112-87bf-80a107fad5bd",
+      "name": "Every Morning",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5dc7aeb8-710a-4387-80fc-178769b2758e",
+              "name": "title",
+              "value": "BAOS Owner Daily Digest",
+              "type": "string"
+            },
+            {
+              "id": "6e5f2933-5379-4dd0-972b-964428f58fc6",
+              "name": "summary",
+              "value": "Fetch KPIs from BAOS backend, summarize exceptions, then send via configured channel.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7950ca8d-de11-4df7-b5eb-bb029812f709",
+      "name": "Prepare Owner Digest",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Every Morning": {
+      "main": [
+        [
+          {
+            "node": "Prepare Owner Digest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "01e04353-2c9b-4cf4-a853-414cd25b4a47",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

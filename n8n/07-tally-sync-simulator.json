@@ -1,0 +1,84 @@
+{
+  "name": "07 Tally Sync Simulator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tally-sync",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "bca8bb72-1e10-4b82-a578-9f0e1793d65d",
+      "name": "Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d81bf42f-fa98-423d-a0f4-56b95f0a251a",
+              "name": "workflowKey",
+              "value": "tally-sync",
+              "type": "string"
+            },
+            {
+              "id": "35bb5852-f8cd-48c4-b1e1-bb943aa04699",
+              "name": "summary",
+              "value": "Tally adapter simulator sync completed; replace endpoint with client Tally adapter for production",
+              "type": "string"
+            },
+            {
+              "id": "3704b2ed-336e-4618-ac70-fec430628122",
+              "name": "status",
+              "value": "SUCCESS",
+              "type": "string"
+            },
+            {
+              "id": "242f738d-e0dc-41d7-a2ce-005642645dcf",
+              "name": "event",
+              "value": "={{ $json }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "13e72d90-62f5-4ef4-81f9-a5b9f27396d2",
+      "name": "Prepare Automation Result",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Automation Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1b7a543a-ea2f-4056-9d75-1ae93e8aed3f",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

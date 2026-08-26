@@ -1,0 +1,84 @@
+{
+  "name": "03 Quote Notification",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "quote-notification",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "813ddd25-51ed-4377-8261-1fbe9b80c15f",
+      "name": "Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "26fee8da-11ce-4e36-9987-9162d254e2e4",
+              "name": "workflowKey",
+              "value": "quote-notification",
+              "type": "string"
+            },
+            {
+              "id": "eb686933-0537-4cf7-95f4-a0675fbfd8b8",
+              "name": "summary",
+              "value": "Dealer quote notification prepared; messaging provider can be swapped from simulator to WhatsApp",
+              "type": "string"
+            },
+            {
+              "id": "5025b130-f560-45f4-810f-7cb6f066d671",
+              "name": "status",
+              "value": "SUCCESS",
+              "type": "string"
+            },
+            {
+              "id": "f8c05efb-2dda-49b9-a759-fd643fffeabe",
+              "name": "event",
+              "value": "={{ $json }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7ddc8614-f895-414f-b78e-c77b16599dfd",
+      "name": "Prepare Automation Result",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Automation Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "88160a02-fa82-47b3-a4d8-7253a7dc7c5a",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

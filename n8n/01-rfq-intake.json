@@ -1,0 +1,84 @@
+{
+  "name": "01 RFQ Intake",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "rfq-intake",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "ca7262d6-df42-4e2b-9a1d-231e1f101b95",
+      "name": "Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2a0cd52b-cb84-4840-b4c5-9b9c5ae49db0",
+              "name": "workflowKey",
+              "value": "rfq-intake",
+              "type": "string"
+            },
+            {
+              "id": "e1d1e127-7906-4821-a7d0-318dcaddd84a",
+              "name": "summary",
+              "value": "RFQ normalized, salesperson assignment queued and acknowledgement prepared",
+              "type": "string"
+            },
+            {
+              "id": "8c473650-a02d-48a9-8a38-ed36d3418881",
+              "name": "status",
+              "value": "SUCCESS",
+              "type": "string"
+            },
+            {
+              "id": "c23cecbf-f837-40de-b125-ffbd0503bf18",
+              "name": "event",
+              "value": "={{ $json }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "25b9a2e3-3195-4275-b135-7f376dd356b1",
+      "name": "Prepare Automation Result",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Automation Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "da8c7ba0-811f-41ad-92a7-af75efd62473",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

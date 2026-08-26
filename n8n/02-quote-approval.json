@@ -1,0 +1,130 @@
+{
+  "name": "02 Quote Approval",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "quote-approval",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "714e1916-5817-42e5-b4a5-8dacd443f221",
+      "name": "Approval Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "0939a599-d964-4458-94ef-0dc0b852ea0e",
+              "leftValue": "={{ Number($json.payload?.amount || 0) }}",
+              "rightValue": 100000,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "67dd0f89-0224-44a0-9708-584c96a84cf4",
+      "name": "High Value?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "id": "2cabd0e0-f0de-4d73-98ad-794d0100a6b9",
+      "name": "Wait For Manager",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "00d68429-8815-44a5-9fdb-d82ce4428593",
+              "name": "approval",
+              "value": "NOT_REQUIRED",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b2300064-2d92-4658-a948-21429ac06895",
+      "name": "Auto Approved",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Approval Trigger": {
+      "main": [
+        [
+          {
+            "node": "High Value?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "High Value?": {
+      "main": [
+        [
+          {
+            "node": "Wait For Manager",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Auto Approved",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5f990c95-9350-4b01-b0db-0b0862b3c498",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

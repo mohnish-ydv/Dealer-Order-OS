@@ -1,0 +1,84 @@
+{
+  "name": "05 Order and Payment",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "order-payment",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "1a4f222c-4052-4887-a27e-b59c8c771592",
+      "name": "Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e4f4c84a-ed68-4986-959e-9b80048768eb",
+              "name": "workflowKey",
+              "value": "order-payment",
+              "type": "string"
+            },
+            {
+              "id": "2a9c756c-63f0-44dc-a09d-f2e22f1927dc",
+              "name": "summary",
+              "value": "Accepted quote converted to order; payment provider event recorded and downstream sync queued",
+              "type": "string"
+            },
+            {
+              "id": "71f1f7d5-cb93-4386-b3b5-e65828a4d9d3",
+              "name": "status",
+              "value": "SUCCESS",
+              "type": "string"
+            },
+            {
+              "id": "cd730a42-9f15-4681-8b38-c15a1d76d143",
+              "name": "event",
+              "value": "={{ $json }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ccbcbcd1-cb85-4961-a02a-96be802aca16",
+      "name": "Prepare Automation Result",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Automation Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "130350be-dcc3-45b1-a4e3-6484aa9b0eb3",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

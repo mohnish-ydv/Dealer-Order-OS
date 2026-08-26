@@ -1,0 +1,84 @@
+{
+  "name": "06 Inventory Alerts",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "inventory-alert",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "91738b99-961b-4294-a911-f69b2dc5fe62",
+      "name": "Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2450d331-4edb-4d67-9318-e3cb008b90f6",
+              "name": "workflowKey",
+              "value": "inventory-alert",
+              "type": "string"
+            },
+            {
+              "id": "aee47b0f-0824-482b-999a-370dd84e56f1",
+              "name": "summary",
+              "value": "Low-stock exception prepared for purchasing/admin action",
+              "type": "string"
+            },
+            {
+              "id": "19ece48d-efb5-4e80-8f46-63778910b41c",
+              "name": "status",
+              "value": "SUCCESS",
+              "type": "string"
+            },
+            {
+              "id": "77bee9da-f11e-470b-b6cb-da9668c8f01b",
+              "name": "event",
+              "value": "={{ $json }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "af0c344d-860c-438c-8777-fff9e8e07df9",
+      "name": "Prepare Automation Result",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Automation Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d0de6807-d03e-462c-9a9a-80a5dc20b779",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

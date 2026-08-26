@@ -1,0 +1,84 @@
+{
+  "name": "09 Profile Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "profile-sync",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "5678789c-f37d-410c-a64e-7ae3f613a3a4",
+      "name": "Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5df97c91-add5-4aeb-9f6a-79ff02db65a9",
+              "name": "workflowKey",
+              "value": "profile-sync",
+              "type": "string"
+            },
+            {
+              "id": "e99fa3c2-80e8-42a8-a3f2-03e6633f52ac",
+              "name": "summary",
+              "value": "Dealer profile change synchronized to backend and integration layer",
+              "type": "string"
+            },
+            {
+              "id": "25c65c07-6df9-4958-aea6-6c5742f838a8",
+              "name": "status",
+              "value": "SUCCESS",
+              "type": "string"
+            },
+            {
+              "id": "073cf6f5-0f99-43ac-a0d7-b02fde05f8b5",
+              "name": "event",
+              "value": "={{ $json }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a134427b-49f2-43bb-bee0-47f39a603b60",
+      "name": "Prepare Automation Result",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Automation Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a12d28a3-af53-4f02-9c45-bbad46bbe6af",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}
